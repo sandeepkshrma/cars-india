@@ -4,7 +4,7 @@ export async function GET(request) {
   const limit = 6;
   const startIndex = (page - 1) * limit;
 
-  // Get filters from query params
+
   const make = url.searchParams.get("make");
   const model = url.searchParams.get("model");
   const price = parseInt(url.searchParams.get("price"));
@@ -183,7 +183,7 @@ export async function GET(request) {
     }
   ];
 
-  // Apply filters
+
   const filteredCars = cars.filter(car => {
     return (
       (!make || car.make.toLowerCase().includes(make.toLowerCase())) &&
@@ -196,12 +196,27 @@ export async function GET(request) {
   const paginatedCars = filteredCars.slice(startIndex, startIndex + limit);
   const totalPages = Math.ceil(filteredCars.length / limit);  
 
-  return new Response(JSON.stringify({ cars: paginatedCars, totalPages }), { status: 200, headers: {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
+  return new Response(JSON.stringify({ cars: paginatedCars, totalPages }),
+   { status: 200,
+     headers: corsHeaders(),
+   });
+}
+
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: corsHeaders(),
+  });
+}
+
+
+function corsHeaders() {
+  return {
+    "Access-Control-Allow-Origin": "*",  
     "Access-Control-Allow-Methods": "GET, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
-  } });
+    "Access-Control-Max-Age": "86400", 
+  };
 }
 
 
