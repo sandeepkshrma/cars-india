@@ -45,7 +45,7 @@ body {
   .carCard:hover {
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-    border-color: #3498db; /* Blue border on hover */
+    border-color: #3498db; 
   }
 
   .carCard:hover img {
@@ -76,11 +76,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Full screen height */
+    min-height: 100vh; 
   }
   .loader {
-    border: 8px solid #f3f3f3; /* Light grey background */
-    border-top: 8px solid #3498db; /* Blue top color */
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db; 
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -91,5 +91,9 @@ body {
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  .filterSection{
+    background-color: white;
   }
 }

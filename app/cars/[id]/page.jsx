@@ -58,11 +58,11 @@ export async function getCar(id) {
     return null;
   }
 
-  // Find the car by its ID
+ 
   return data.cars.find(car => car.id === parseInt(id));
 }
 
-// CarDetails (Client Component)
+
 function CarDetails({ car }) {
   if (!car) {
     return <p>Car details not found</p>; 

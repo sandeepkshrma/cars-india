@@ -4,11 +4,11 @@ export async function GET(request) {
   const limit = 6;
   const startIndex = (page - 1) * limit;
 
-
   const make = url.searchParams.get("make");
   const model = url.searchParams.get("model");
   const price = parseInt(url.searchParams.get("price"));
   const year = parseInt(url.searchParams.get("year"));
+  const sort = url.searchParams.get("sort"); 
 
   const cars = [
     {
@@ -183,8 +183,8 @@ export async function GET(request) {
     }
   ];
 
-
-  const filteredCars = cars.filter(car => {
+  // 🔵 Filter Logic
+  let filteredCars = cars.filter(car => {
     return (
       (!make || car.make.toLowerCase().includes(make.toLowerCase())) &&
       (!model || car.model.toLowerCase().includes(model.toLowerCase())) &&
@@ -193,13 +193,30 @@ export async function GET(request) {
     );
   });
 
-  const paginatedCars = filteredCars.slice(startIndex, startIndex + limit);
-  const totalPages = Math.ceil(filteredCars.length / limit);  
+  // 🟡 Sort Logic (new)
+  if (sort) {
+    if (sort === "price_asc") {
+      filteredCars.sort((a, b) => a.price - b.price);
+    } else if (sort === "price_desc") {
+      filteredCars.sort((a, b) => b.price - a.price);
+    } else if (sort === "year_asc") {
+      filteredCars.sort((a, b) => a.year - b.year);
+    } else if (sort === "year_desc") {
+      filteredCars.sort((a, b) => b.year - a.year);
+    }
+  }
 
-  return new Response(JSON.stringify({ cars: paginatedCars, totalPages }),
-   { status: 200,
-     headers: corsHeaders(),
-   });
+  // 🟢 Pagination
+  const paginatedCars = filteredCars.slice(startIndex, startIndex + limit);
+  const totalPages = Math.ceil(filteredCars.length / limit);
+
+  return new Response(
+    JSON.stringify({ cars: paginatedCars, totalPages }),
+    {
+      status: 200,
+      headers: corsHeaders(),
+    }
+  );
 }
 
 export async function OPTIONS() {
@@ -209,14 +226,14 @@ export async function OPTIONS() {
   });
 }
 
-
 function corsHeaders() {
   return {
-    "Access-Control-Allow-Origin": "*",  
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Max-Age": "86400", 
+    "Access-Control-Max-Age": "86400",
   };
 }
+
 
 
