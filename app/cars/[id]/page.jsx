@@ -50,7 +50,7 @@ function SimpleCarousel({ images }) {
 
 
 export async function getCar(id) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/cars`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://cars-india-theta.vercel.app'}/api/cars`);
   const data = await res.json();
 
   if (!Array.isArray(data.cars)) {
