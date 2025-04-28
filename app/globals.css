@@ -20,7 +20,7 @@
 }
 
 body {
-  background: rgb(184 203 222) !important;
+  background-color: rgb(184 203 222) !important;
   font-family: Arial, Helvetica, sans-serif;
   .carCard{
     background: white;
