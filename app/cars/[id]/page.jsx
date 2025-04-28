@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { notFound } from 'next/navigation';
+import Link from "next/link";
 
 
 function SimpleCarousel({ images }) {
@@ -90,6 +91,13 @@ function CarDetails({ car }) {
         <h2 className="text-2xl font-semibold mb-2">Description</h2>
         <p className="text-gray-700">{car.description}</p>
       </div>
+      <div className="flex flex-row-reverse">
+      <Link href="/">
+        <button className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+          ← Back to Home
+        </button>
+      </Link>
+      </div>
     </main>
   );
 }
@@ -124,7 +132,10 @@ export default function CarDetailsPage({ params }) {
   }, [id]); 
 
   if (!car) {
-    return <p>Loading...</p>;
+    return <div className="loader-wrapper">
+            <div className="loader">
+            </div>
+           </div>
   }
 
   return <CarDetails car={car} />;
