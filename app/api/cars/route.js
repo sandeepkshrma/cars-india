@@ -196,7 +196,12 @@ export async function GET(request) {
   const paginatedCars = filteredCars.slice(startIndex, startIndex + limit);
   const totalPages = Math.ceil(filteredCars.length / limit);  
 
-  return new Response(JSON.stringify({ cars: paginatedCars, totalPages }), { status: 200 });
+  return new Response(JSON.stringify({ cars: paginatedCars, totalPages }), { status: 200, headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  } });
 }
 
 

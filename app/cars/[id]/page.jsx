@@ -1,11 +1,9 @@
-// /app/cars/[id]/page.jsx
-
-'use client'; // Client-side component
+'use client';
 
 import { useState, useEffect } from 'react';
 import { notFound } from 'next/navigation';
 
-// Simple Carousel Component
+
 function SimpleCarousel({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -18,7 +16,7 @@ function SimpleCarousel({ images }) {
   };
 
   if (!images || images.length === 0) {
-    return <p>No images available</p>; // Return if no images are available
+    return <p>No images available</p>;
   }
 
   return (
@@ -50,7 +48,7 @@ function SimpleCarousel({ images }) {
   );
 }
 
-// Fetch car details (Server Component)
+
 export async function getCar(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/cars`);
   const data = await res.json();
@@ -66,19 +64,19 @@ export async function getCar(id) {
 // CarDetails (Client Component)
 function CarDetails({ car }) {
   if (!car) {
-    return <p>Car details not found</p>; // Safe guard if car data is not available
+    return <p>Car details not found</p>; 
   }
 
   return (
     <main className="p-8 max-w-4xl mx-auto">
       <h1 className="text-4xl font-bold mb-6">{car.make} {car.model}</h1>
 
-      {/* Simple Image Carousel */}
+   
       <div className="mb-6">
         <SimpleCarousel images={car.images} />
       </div>
 
-      {/* Car Details */}
+    
       <div className="grid grid-cols-2 gap-4 text-lg">
         <p><strong>Year:</strong> {car.year}</p>
         <p><strong>Price:</strong> ${car.price.toLocaleString()}</p>
@@ -96,16 +94,16 @@ function CarDetails({ car }) {
   );
 }
 
-// Default export: Server-side component to fetch data and pass to CarDetails
+
 export default function CarDetailsPage({ params }) {
   const [car, setCar] = useState(null);
   const [id, setId] = useState(null);
 
-  // Using React.use() to unwrap params.id
+
   useEffect(() => {
     const getId = async () => {
-      const resolvedParams = await params; // Unwrap params here
-      setId(resolvedParams.id); // Set the id to state
+      const resolvedParams = await params; 
+      setId(resolvedParams.id); 
     };
     getId();
   }, [params]);
@@ -113,17 +111,17 @@ export default function CarDetailsPage({ params }) {
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
-        const car = await getCar(id); // Fetch car using id
+        const car = await getCar(id); 
         if (car) {
           setCar(car);
         } else {
-          notFound(); // Handle case where car is not found
+          notFound(); 
         }
       }
     };
 
     fetchData();
-  }, [id]); // Use the id inside useEffect to fetch data
+  }, [id]); 
 
   if (!car) {
     return <p>Loading...</p>;
