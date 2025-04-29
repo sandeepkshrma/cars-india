@@ -8,7 +8,7 @@ function CarList() {
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 
-  
+
   const [filters, setFilters] = useState({
     make: '',
     model: '',
@@ -16,10 +16,10 @@ function CarList() {
     year: '',
   });
 
-  
+
   const [sortOption, setSortOption] = useState("");
 
- 
+
   const sortingOptions = [
     { label: "Default", value: "" },
     { label: "Price Low to High", value: "price_asc" },
@@ -56,18 +56,18 @@ function CarList() {
 
   const handleSortChange = (value) => {
     setSortOption(value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   return (
-    <div className="p-8">
+    <div className="application p-8">
       <div className="appLogo flex items-center mb-8">
         <h1 className="appLogoName text-4xl font-bold">CarsIndia</h1>
       </div>
 
-     
+
       <div className="flex flex-col lg:flex-row gap-8">
-        
+
         <div className="lg:w-1/4 w-full">
           <div className="filterSection border rounded-xl p-6 shadow-md">
             <h2 className="text-2xl font-semibold mb-4">Filters</h2>
@@ -106,7 +106,7 @@ function CarList() {
               />
             </div>
 
-           
+
             <div className="mt-6">
               <h3 className="text-lg font-semibold mb-2">Sort By</h3>
               <div className="overflow-x-auto">
@@ -115,11 +115,10 @@ function CarList() {
                     <button
                       key={option.value}
                       onClick={() => handleSortChange(option.value)}
-                      className={`px-4 py-2 rounded-full border whitespace-nowrap transition-transform transform hover:scale-105 ${
-                        sortOption === option.value
+                      className={`px-4 py-2 rounded-full border whitespace-nowrap transition-transform transform hover:scale-105 ${sortOption === option.value
                           ? "bg-blue-600 text-white border-blue-600"
                           : "bg-white text-gray-600 border-gray-300"
-                      }`}
+                        }`}
                     >
                       {option.label}
                     </button>
@@ -130,13 +129,13 @@ function CarList() {
           </div>
         </div>
 
-       
+
         <div className="lg:w-3/4 w-full">
-         
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
             {cars.map((car) => (
               <Link
-                href={`/cars/${car.id}`}
+                href={{ pathname: `/cars/${car.id}`, query: { currentPage: `${currentPage}` } }}
                 key={car.id}
                 className="carCard border rounded-2xl shadow-md flex flex-col items-center hover:shadow-lg transition"
               >
@@ -148,7 +147,7 @@ function CarList() {
             ))}
           </div>
 
-          
+
           <div className="flex justify-center mt-8">
             <button
               onClick={() => handlePageChange(currentPage - 1)}

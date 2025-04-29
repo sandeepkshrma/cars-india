@@ -8,7 +8,7 @@ export async function GET(request) {
   const model = url.searchParams.get("model");
   const price = parseInt(url.searchParams.get("price"));
   const year = parseInt(url.searchParams.get("year"));
-  const sort = url.searchParams.get("sort"); 
+  const sort = url.searchParams.get("sort");
 
   const cars = [
     {
@@ -206,9 +206,12 @@ export async function GET(request) {
     }
   }
 
+
+
   // 🟢 Pagination
   const paginatedCars = filteredCars.slice(startIndex, startIndex + limit);
   const totalPages = Math.ceil(filteredCars.length / limit);
+  console.log(paginatedCars);
 
   return new Response(
     JSON.stringify({ cars: paginatedCars, totalPages }),

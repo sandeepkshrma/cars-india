@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { notFound } from 'next/navigation';
+import { notFound, useSearchParams } from 'next/navigation';
 import Link from "next/link";
 
 
@@ -50,34 +50,34 @@ function SimpleCarousel({ images }) {
 }
 
 
-export async function getCar(id) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://cars-india-theta.vercel.app'}/api/cars`);
+export async function getCar(id, page) {
+  const res = await fetch(`https://cars-india-theta.vercel.app/api/cars?page=${page}`);
   const data = await res.json();
 
   if (!Array.isArray(data.cars)) {
     return null;
   }
 
- 
+
   return data.cars.find(car => car.id === parseInt(id));
 }
 
 
 function CarDetails({ car }) {
   if (!car) {
-    return <p>Car details not found</p>; 
+    return <p>Car details not found</p>;
   }
 
   return (
     <main className="p-8 max-w-4xl mx-auto">
       <h1 className="text-4xl font-bold mb-6">{car.make} {car.model}</h1>
 
-   
+
       <div className="mb-6">
         <SimpleCarousel images={car.images} />
       </div>
 
-    
+
       <div className="grid grid-cols-2 gap-4 text-lg">
         <p><strong>Year:</strong> {car.year}</p>
         <p><strong>Price:</strong> ${car.price.toLocaleString()}</p>
@@ -92,11 +92,11 @@ function CarDetails({ car }) {
         <p className="text-gray-700">{car.description}</p>
       </div>
       <div className="flex flex-row-reverse">
-      <Link href="/">
-        <button className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
-          ← Back to Home
-        </button>
-      </Link>
+        <Link href="/">
+          <button className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+            ← Back to Home
+          </button>
+        </Link>
       </div>
     </main>
   );
@@ -106,12 +106,14 @@ function CarDetails({ car }) {
 export default function CarDetailsPage({ params }) {
   const [car, setCar] = useState(null);
   const [id, setId] = useState(null);
+  const searchParams = useSearchParams();
+  const page = searchParams.get("currentPage");
 
 
   useEffect(() => {
     const getId = async () => {
-      const resolvedParams = await params; 
-      setId(resolvedParams.id); 
+      const resolvedParams = await params;
+      setId(resolvedParams.id);
     };
     getId();
   }, [params]);
@@ -119,23 +121,23 @@ export default function CarDetailsPage({ params }) {
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
-        const car = await getCar(id); 
+        const car = await getCar(id, page);
         if (car) {
           setCar(car);
         } else {
-          notFound(); 
+          notFound();
         }
       }
     };
 
     fetchData();
-  }, [id]); 
+  }, [id]);
 
   if (!car) {
     return <div className="loader-wrapper">
-            <div className="loader">
-            </div>
-           </div>
+      <div className="loader">
+      </div>
+    </div>
   }
 
   return <CarDetails car={car} />;
