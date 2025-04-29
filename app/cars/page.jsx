@@ -60,33 +60,57 @@ function CarList() {
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
 
-      {/* Navigation Bar */}
-      <nav className="appTheme shadow-md px-8 py-4 flex justify-between items-center">
-        <div className="flex">
-        <img className="loginimage w-14 h-14  rounded" src="/car-images/carlogo.svg" alt="carlogo"></img>
-        <h1 className="px-2 py-3 text-2xl font-bold text-sky-950">CarsIndia</h1>
+      <nav className="appTheme shadow-md px-4 py-3 flex justify-between items-center relative">
+        <div className="flex items-center space-x-2">
+          <img className="w-12 h-12 rounded" src="/car-images/carlogo.svg" alt="carlogo" />
+          <h1 className="text-xl font-bold text-sky-950">CarsIndia</h1>
         </div>
 
-        <div className="flex items-center space-x-8">
-          <div className="space-x-6 text-gray-700 font-medium">
-            <a href="#" className="hover:text-blue-600">Home</a>
-            <a href="#about" className="hover:text-blue-600">About</a>
-            <a href="#services" className="hover:text-blue-600">Services</a>
-            <a href="#contact" className="hover:text-blue-600">Contact</a>
-          </div>
-
-          <Link
-            href="/login"
-            className="flex items-center gap-2 hover:bg-gray-200 text-white px-1 py-1 rounded-full transition"
+        {/* Hamburger menu (mobile only) */}
+        <div className="lg:hidden">
+          <button
+            onClick={() => document.getElementById('mobileMenu').classList.toggle('hidden')}
+            className="text-sky-900 focus:outline-none"
           >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Desktop menu */}
+        <div className="hidden lg:flex items-center space-x-6 text-gray-700 font-medium">
+          <a href="#" className="hover:text-blue-600">Home</a>
+          <a href="#about" className="hover:text-blue-600">About</a>
+          <a href="#services" className="hover:text-blue-600">Services</a>
+          <a href="#contact" className="hover:text-blue-600">Contact</a>
+          <Link href="/login" className="hidden lg:flex items-center gap-2 hover:bg-gray-200 text-white px-1 py-1 rounded-full transition">
+          <img
+            src="/car-images/sandeep.jpg"
+            alt="User Avatar"
+            className="w-10 h-10 rounded-full border-2 border-sky-900"
+          />
+        </Link>
+        </div>
+        
+
+        {/* Mobile menu dropdown */}
+        <div id="mobileMenu" className="absolute top-full right-0 mt-2 w-full bg-white shadow-lg rounded-md p-4 space-y-3 text-gray-700 font-medium lg:hidden hidden z-50">
+          <a href="#" className="block hover:text-blue-600">Home</a>
+          <a href="#about" className="block hover:text-blue-600">About</a>
+          <a href="#services" className="block hover:text-blue-600">Services</a>
+          <a href="#contact" className="block hover:text-blue-600">Contact</a>
+          <Link href="/login" className="flex items-center gap-2 mt-2 hover:text-blue-600">
             <img
               src="/car-images/sandeep.jpg"
               alt="User Avatar"
-              className="loginimage w-14 h-14  rounded-full"
+              className="w-8 h-8 rounded-full"
             />
+            Login
           </Link>
         </div>
       </nav>
+
 
 
       {/* Main Content */}
