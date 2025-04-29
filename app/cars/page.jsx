@@ -60,9 +60,9 @@ function CarList() {
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
 
-      <nav className="appTheme shadow-md px-4 py-3 flex justify-between items-center relative">
+      <nav className="appTheme shadow-md px-8 py-4 flex justify-between items-center relative">
         <div className="flex items-center space-x-2">
-          <img className="w-12 h-12 rounded" src="/car-images/carlogo.svg" alt="carlogo" />
+          <img className="loginimage w-12 h-12 rounded" src="/car-images/carlogo.svg" alt="carlogo" />
           <h1 className="text-xl font-bold text-sky-950">CarsIndia</h1>
         </div>
 
@@ -88,7 +88,7 @@ function CarList() {
           <img
             src="/car-images/sandeep.jpg"
             alt="User Avatar"
-            className="w-10 h-10 rounded-full border-2 border-sky-900"
+            className="loginimage w-12 h-12 rounded-full border-2 border-sky-900"
           />
         </Link>
         </div>
