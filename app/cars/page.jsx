@@ -63,7 +63,7 @@ function CarList() {
       {/* Navigation Bar */}
       <nav className="appTheme shadow-md px-8 py-4 flex justify-between items-center">
         <div className="flex">
-        <img className="loginimage w-14 h-14  rounded-full" src="/car-images/carlogo.svg" alt="heart"></img>
+        <img className="loginimage w-14 h-14  rounded" src="/car-images/carlogo.svg" alt="carlogo"></img>
         <h1 className="px-2 py-3 text-2xl font-bold text-sky-950">CarsIndia</h1>
         </div>
 
