@@ -64,7 +64,7 @@ function CarList() {
       <nav className="appTheme shadow-md px-8 py-4 flex justify-between items-center">
         <div className="flex">
         <img className="loginimage w-14 h-14  rounded-full" src="/car-images/carlogo.svg" alt="heart"></img>
-        <h1 className="px-2 py-3 text-2xl font-bold text-blue-600">CarsIndia</h1>
+        <h1 className="px-2 py-3 text-2xl font-bold text-sky-950">CarsIndia</h1>
         </div>
 
         <div className="flex items-center space-x-8">
@@ -128,7 +128,7 @@ function CarList() {
                   value={filters.year}
                   onChange={handleFilterChange}
                   placeholder="Year"
-                  className="bg-white p-2 border rounded"
+                  className="bg-white   p-2 border rounded"
                 />
               </div>
 
@@ -200,8 +200,8 @@ function CarList() {
       {/* Footer */}
       <footer className="appTheme text-center text-sm text-gray-600 py-6 border-t">
         <div className="mb-2">© 2025 CarsIndia. All rights reserved.</div>
-        <div>Contact: contact@carsindia.com | +91-9876543210</div>
-        <div>1234, Auto Street, New Delhi, India</div>
+        <div>Contact: contact@carsindia.com | +91-6376013232</div>
+        <div>1234, Auto Street, Jaipur, India</div>
       </footer>
     </div>
   );
