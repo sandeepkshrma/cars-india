@@ -119,7 +119,7 @@ function CarList() {
 
           {/* Filters and Sorting */}
           <div className="lg:w-1/4 w-full">
-            <div className="filterSection border rounded-xl p-6 shadow-md bg-white">
+            <div className="filterSection shadow-lg rounded-xl p-6 shadow-md bg-white">
               <h2 className="text-2xl font-semibold mb-4">Filters</h2>
               <div className="flex flex-col gap-4">
                 <input
@@ -128,7 +128,7 @@ function CarList() {
                   value={filters.make}
                   onChange={handleFilterChange}
                   placeholder="Make"
-                  className="bg-white p-2 border rounded"
+                  className="bg-white p-2 rounded"
                 />
                 <input
                   type="text"
@@ -136,7 +136,7 @@ function CarList() {
                   value={filters.model}
                   onChange={handleFilterChange}
                   placeholder="Model"
-                  className="bg-white p-2 border rounded"
+                  className="bg-white p-2 rounded"
                 />
                 <input
                   type="number"
@@ -144,7 +144,7 @@ function CarList() {
                   value={filters.price}
                   onChange={handleFilterChange}
                   placeholder="Min Price"
-                  className="bg-white p-2 border rounded"
+                  className="bg-white p-2 rounded"
                 />
                 <input
                   type="number"
@@ -152,7 +152,7 @@ function CarList() {
                   value={filters.year}
                   onChange={handleFilterChange}
                   placeholder="Year"
-                  className="bg-white   p-2 border rounded"
+                  className="bg-white p-2 rounded"
                 />
               </div>
 
