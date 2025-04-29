@@ -47,20 +47,20 @@ export async function GET(request) {
     },
     {
       id: 3,
-      make: "BMW",
-      model: "3 Series",
-      year: 2020,
-      price: 35000,
+      make: "Chevrolet",
+      model: "Camaro",
+      year: 2022,
+      price: 45000,
       images: [
-        "/car-images/bmw1.jpg",
-        "/car-images/bmw2.jpg",
-        "/car-images/bmw3.jpg",
+        "/car-images/chevrolet1.jpg",
+        "/car-images/chevrolet2.jpg",
+        "/car-images/chevrolet3.jpg",
       ],
-      mileage: 25000,
+      mileage: 12000,
       transmission: "Automatic",
       fuel: "Petrol",
-      color: "Blue",
-      description: "Luxury sedan with advanced features and great performance."
+      color: "Yellow",
+      description: "High-performance sports car, built for speed and thrills."
     },
     {
       id: 4,
@@ -132,20 +132,20 @@ export async function GET(request) {
     },
     {
       id: 8,
-      make: "Chevrolet",
-      model: "Camaro",
-      year: 2022,
-      price: 45000,
+      make: "BMW",
+      model: "3 Series",
+      year: 2020,
+      price: 35000,
       images: [
-        "/car-images/chevrolet1.jpg",
-        "/car-images/chevrolet2.jpg",
-        "/car-images/chevrolet3.jpg",
+        "/car-images/bmw1.jpg",
+        "/car-images/bmw2.jpg",
+        "/car-images/bmw3.jpg",
       ],
-      mileage: 12000,
+      mileage: 25000,
       transmission: "Automatic",
       fuel: "Petrol",
-      color: "Yellow",
-      description: "High-performance sports car, built for speed and thrills."
+      color: "Blue",
+      description: "Luxury sedan with advanced features and great performance."
     },
     {
       id: 9,
